@@ -22,3 +22,16 @@ def get_user_budget():
 
 
 def greedy_algorithm(items, budget):
+    # Сортування калорії/вартість
+    sorted_items = sorted(items.items(), key=lambda x: x[1]["calories"] / x[1]["cost"], reverse=True)
+    chosen_items = []
+    total_cost = 0
+    total_calories = 0
+
+    for item, properties in sorted_items:
+        if total_cost + properties["cost"] <= budget:
+            chosen_items.append(item)
+            total_cost += properties["cost"]
+            total_calories += properties["calories"]
+    
+    return chosen_items, total_calories
