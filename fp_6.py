@@ -35,3 +35,23 @@ def greedy_algorithm(items, budget):
             total_calories += properties["calories"]
     
     return chosen_items, total_calories
+
+
+def dynamic_programming(items, budget):
+
+    n = len(items)
+    items_list = list(items.items())
+    dp = [[0] * (budget + 1) for _ in range(n + 1)]
+    keep = [[False] * (budget + 1) for _ in range(n + 1)]
+    
+    for i in range(1, n + 1):
+        item_name, properties = items_list[i - 1]
+        cost = properties["cost"]
+        calories = properties["calories"]
+        
+        for j in range(budget + 1):
+            if dp[i - 1][j] > dp[i][j]:
+                dp[i][j] = dp[i - 1][j]
+            if j >= cost and dp[i - 1][j - cost] + calories > dp[i][j]:
+                dp[i][j] = dp[i - 1][j - cost] + calories
+                keep[i][j] = True   
