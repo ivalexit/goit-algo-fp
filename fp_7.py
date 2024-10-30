@@ -24,3 +24,15 @@ print("------------------------------------------------------------")
 theoretical_probabilities = ["2.78%", "5.56%", "8.33%", "11.11%", "13.89%", "16.67%", "13.89%", "11.11%", "8.33%", "5.56%", "2.78%"]
 for i, (sum_value, probability) in enumerate(sum_probabilities.items(), start=2):
     print(f" {sum_value:>3}  |    {probability*100:>5.2f}%                 | {theoretical_probabilities[i-2]}")
+
+
+# Створення графіку
+plt.figure(figsize=(10, 6))
+plt.bar(sum_probabilities.keys(), sum_probabilities.values(), alpha=0.7, label="Monte Carlo")
+plt.plot(range(2, 13), [2.78/100, 5.56/100, 8.33/100, 11.11/100, 13.89/100, 16.67/100, 13.89/100, 11.11/100, 8.33/100, 5.56/100, 2.78/100],
+         marker='o', color='red', linestyle='--', label="Theoretical Probability")
+plt.xlabel("Sum")
+plt.ylabel("Probability")
+plt.title("Probability of Each Sum for Two Dice Rolls (Monte Carlo Method)")
+plt.legend()
+plt.show()
