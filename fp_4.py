@@ -3,7 +3,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 
 class Node:
-    def __init__(self, key, color="skyblue"):
+    def __init__(self, key, color="violet"):
         self.left = None
         self.right = None
         self.val = key
@@ -34,7 +34,7 @@ def draw_tree(tree_root):
     labels = {node[0]: node[1]['label'] for node in tree.nodes(data=True)}  # Використовуємо значення вузла для міток
 
     plt.figure(figsize=(8, 5))
-    nx.draw(tree, pos=pos, labels=labels, arrows=False, node_size=2500, node_color=colors, font_color="white")
+    nx.draw(tree, pos=pos, labels=labels, arrows=False, node_size=2500, node_color=colors, font_color="blue")
     plt.show()
 
 # Створення бінарної купи з масиву
@@ -42,7 +42,16 @@ def build_heap_tree(arr):
     # Створюємо вузли на основі значень масиву
     nodes = [Node(key) for key in arr]
     
-
+    # З'єднуємо вузли у повне бінарне дерево
+    for i in range(len(nodes)):
+        left_index = 2 * i + 1
+        right_index = 2 * i + 2
+        if left_index < len(nodes):
+            nodes[i].left = nodes[left_index]
+        if right_index < len(nodes):
+            nodes[i].right = nodes[right_index]
+    
+    return nodes[0] if nodes else None  # Повертаємо кореневий вузол
 
 # Масив значень для створення бінарної купи
 heap_array = [10, 5, 3, 2, 4, 1]
