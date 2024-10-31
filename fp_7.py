@@ -2,8 +2,20 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-# Задаємо кількість підкидань кубиків
-num_rolls = 1_000_000
+# Ввід кількості підкидань користувачем
+def get_num_rolls():
+    while True:
+        try:
+            num_rolls = int(input("Please enter the number of dice rolls: "))
+            if num_rolls > 0:
+                return num_rolls
+            else:
+                print("The number of rolls must be a positive integer.")
+        except ValueError:
+            print("Invalid input. Please enter a positive integer.")
+
+# Отримуємо кількість підкидань від користувача
+num_rolls = get_num_rolls()
 
 # Створюємо імітацію підкидань
 dice1 = np.random.randint(1, 7, num_rolls)
