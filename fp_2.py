@@ -27,3 +27,27 @@ def draw_pythagoras_tree(t, order, size, angle=45):
         t.setposition(pos)
         t.setheading(heading)
 
+def draw_tree(order, size=100):
+    window = turtle.Screen()
+    window.bgcolor("white")
+
+    t = turtle.Turtle()
+    t.speed(0)
+    t.penup()
+    t.goto(0, -window.window_height() // 3)
+    t.pendown()
+    t.left(90)  # Направляємо черепашку вертикально вгору
+
+    draw_pythagoras_tree(t, order, size)
+
+    window.mainloop()
+
+# Отримуємо рівень рекурсії від користувача
+try:
+    user_input = int(input("Input a positive integer as recursion level for Pythagoras tree: "))
+    if user_input < 0:
+        raise ValueError("Recursion level cannot be negative.")
+except ValueError as error:
+    print(f"Error: {error}")
+else:
+    draw_tree(user_input)
