@@ -37,6 +37,11 @@ def draw_tree(tree_root):
     nx.draw(tree, pos=pos, labels=labels, arrows=False, node_size=2500, node_color=colors, font_color="white")
     plt.show()
 
+# Створення бінарної купи з масиву
+def build_heap_tree(arr):
+    # Створюємо вузли на основі значень масиву
+    nodes = [Node(key) for key in arr]
+    
 
 
 # Масив значень для створення бінарної купи
