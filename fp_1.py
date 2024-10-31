@@ -29,3 +29,15 @@ class LinkedList:
             current = current.next
         print("None")
 
+    # 1. Функція реверсування однозв'язного списку
+    def reverse(self):
+        prev = None
+        current = self.head
+        while current:
+            next_node = current.next
+            current.next = prev
+            prev = current
+            current = next_node
+        self.head = prev
+
+    # 2. Алгоритм сортування однозв'язного списку (сортування вставками)
