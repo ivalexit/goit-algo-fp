@@ -41,3 +41,26 @@ class LinkedList:
         self.head = prev
 
     # 2. Алгоритм сортування однозв'язного списку (сортування вставками)
+    def insertion_sort(self):
+        sorted_list = None  # Початок нового відсортованого списку
+        current = self.head
+        while current:
+            next_node = current.next
+            sorted_list = self._sorted_insert(sorted_list, current)
+            current = next_node
+        self.head = sorted_list
+
+    # Функція для вставки у відсортований список
+    def _sorted_insert(self, sorted_head, new_node):
+        if not sorted_head or new_node.data < sorted_head.data:
+            new_node.next = sorted_head
+            sorted_head = new_node
+        else:
+            current = sorted_head
+            while current.next and current.next.data < new_node.data:
+                current = current.next
+            new_node.next = current.next
+            current.next = new_node
+        return sorted_head
+
+   
